@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/lucide@0.441.0/dist/umd/lucide.min.js"></script>
     <meta name="description" content="Portfolio of Ebrahim Mohammed — Software Developer" />
 
     <style>
@@ -18,18 +19,17 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
             border-radius: 0.5rem;
-            background-color: rgba(255 255 255 / 0.05);
+            background-color: rgba(255, 255, 255, 0.05);
             cursor: default;
         }
 
             .card-elevate:hover {
                 transform: translateY(-6px) scale(1.03);
                 box-shadow: 0 10px 15px -3px rgb(99 102 241 / 0.6), 0 4px 6px -4px rgb(99 102 241 / 0.5);
-                background-color: rgba(255 255 255 / 0.1);
                 cursor: pointer;
             }
 
-        /* Starry background canvas (only additions) */
+        /* Starry background canvas */
         #starCanvas {
             position: fixed;
             top: 0;
@@ -38,6 +38,7 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
         }
 
         /* Respect reduced-motion preference */
@@ -46,10 +47,31 @@
                 display: none;
             }
         }
+
+        /* Custom styles for Contact, Education, Projects, and About sections */
+        .bg-gradient-card {
+            background: linear-gradient(to bottom, rgba(31, 41, 55, 0.8), rgba(55, 65, 81, 0.8));
+        }
+
+        .shadow-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        .hover\:shadow-elegant:hover {
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -4px rgba(99, 102, 241, 0.2);
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #4f46e5, #7e22ce);
+        }
+
+        .shadow-glow {
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100 antialiased">
-    <!-- Starry background canvas (only addition) -->
+    <!-- Starry background canvas -->
     <canvas id="starCanvas" aria-hidden="true"></canvas>
 
     <!-- Navbar -->
@@ -68,6 +90,7 @@
             </div>
             <nav class="hidden md:flex gap-6 text-gray-300">
                 <a href="#about" class="hover:text-indigo-400">About</a>
+                <a href="#education" class="hover:text-indigo-400">Education</a>
                 <a href="#skills" class="hover:text-indigo-400">Skills</a>
                 <a href="#projects" class="hover:text-indigo-400">Projects</a>
                 <a href="#experience" class="hover:text-indigo-400">Experience</a>
@@ -88,6 +111,7 @@
              class="md:hidden hidden bg-gray-900 border-t border-gray-700">
             <div class="flex flex-col p-4 gap-2">
                 <a href="#about" class="py-2 hover:text-indigo-400">About</a>
+                <a href="#education" class="py-2 hover:text-indigo-400">Education</a>
                 <a href="#skills" class="py-2 hover:text-indigo-400">Skills</a>
                 <a href="#projects" class="py-2 hover:text-indigo-400">Projects</a>
                 <a href="#experience" class="py-2 hover:text-indigo-400">Experience</a>
@@ -98,386 +122,859 @@
 
     <!-- Main Content -->
     <main class="pt-20">
-        <!-- Hero Section -->
-        <section id="hero" class="min-h-[70vh] flex items-center">
-            <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
-                <div data-aos="fade-right">
-                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-center md:text-left">
-                        Hi, I’m <span class="text-indigo-400">Ebrahim Mohammed</span>
+        <!-- Main Content -->
+        <main class="pt-20">
+            <!-- Hero Section -->
+            <section id="hero" class="h-auto flex items-center justify-center relative overflow-hidden">
+                <!-- Floating decorative elements -->
+                <div class="absolute top-20 left-20 w-32 h-32 bg-indigo-400/10 rounded-full blur-3xl animate-float"></div>
+                <div class="absolute bottom-20 right-20 w-40 h-40 bg-indigo-400/10 rounded-full blur-3xl animate-float" style="animation-delay: 1s;"></div>
+
+                <div class="text-center z-20 relative animate-fade-in-up w-full max-w-4xl mx-auto px-4 flex flex-col items-center justify-center">
+                    <h1 class="text-5xl md:text-7xl font-bold text-indigo-400 mb-6">
+                        Ebrahim Mohammed
                     </h1>
-                    <p class="mt-4 text-lg md:text-xl text-gray-400 text-center md:text-left">
-                        A Computer Science graduate focused on building secure, user-centered
-                        applications and reliable infrastructure.
+                    <p class="text-xl md:text-2xl text-gray-100 mb-4 font-light">
+                        Software Developer
                     </p>
-                    <div class="flex justify-center md:justify-start gap-3 mt-6">
-                        <a href="#contact"
-                           class="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded shadow hover:bg-indigo-700 transition">Contact Me</a>
-                    </div>
-                    <div class="mt-6 text-sm text-gray-500 text-center md:text-left">
-                        <div>
-                            <strong>Email:</strong>
-                            <a href="mailto:ebmoemedia@gmail.com"
-                               class="text-indigo-400">ebmoemedia@gmail.com</a>
-                        </div>
-                        <div>
-                            <strong>Phone:</strong>
-                            <a href="tel:+27614895476" class="text-indigo-400">+27 61 489 5476</a>
-                        </div>
-                    </div>
-                </div>
-                <div data-aos="fade-left"
-                     class="p-6 rounded-lg bg-gray-800 shadow-lg card-elevate">
-                    <div class="space-y-4">
-                        <div class="bg-gray-900 rounded p-4">
-                            <h3 class="font-semibold text-indigo-400 text-center">
-                                Core Competencies
-                            </h3>
-                            <ul class="mt-2 text-sm text-gray-300 space-y-1 text-center">
-                                <li>Leadership, Team Support</li>
-                                <li>App, Web Development</li>
-                                <li>Security, DevSecOps</li>
-                                <li>Customer Relations, Communication</li>
-                            </ul>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="bg-gray-900 rounded p-4 text-center">
-                                <h4 class="text-xs uppercase text-indigo-400">
-                                    Education
-                                </h4>
-                                <div class="font-medium mt-1">
-                                    B.Comp.Sc, Distinction (2024)
-                                </div>
-                                <div class="font-medium mt-1">
-                                    Higher Certificate in Information Technology (2021)
-                                </div>
-                            </div>
-                            <div class="bg-gray-900 rounded p-4 text-center">
-                                <h4 class="text-xs uppercase text-indigo-400">
-                                    Certs
-                                </h4>
-                                <div class="font-medium mt-1">Flutter Bootcamp (Udemy)</div>
-                            </div>
-                        </div>
-                        <div class="mt-4 text-center space-y-2">
-                            <h4 class="text-sm uppercase text-indigo-400">
-                                Quick Links
-                            </h4>
-                            <div class="flex justify-center gap-4">
-                                <a href="https://www.linkedin.com/in/ebrahim-mohammed-1bb06623a"
-                                   target="_blank"
-                                   class="underline hover:text-indigo-300">LinkedIn</a>
-                                <a href="https://drive.google.com/uc?export=download&id=1wLTA3QQ-Llbhc0ksKx49DkyjJdz3jgb4"
-                                   target="_blank"
-                                   class="underline hover:text-indigo-300">Download CV</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Me Section -->
-        <section id="about" class="py-16">
-            <div class="max-w-5xl mx-auto px-4" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-center text-indigo-400">
-                    About Me
-                </h2>
-                <p class="mt-4 text-lg text-gray-400 leading-relaxed text-center max-w-3xl mx-auto">
-                    I'm a computer science graduate with a strong background in application
-                    development, business, marketing, and management. I enjoy combining
-                    technical know-how with strategic thinking to solve real-world problems,
-                    and I’m passionate about using IT solutions to make processes smoother and
-                    more efficient.
-                </p>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-16 bg-gray-800/60">
-            <div class="max-w-5xl mx-auto px-4" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-center text-indigo-400">
-                    Core Competencies
-                </h2>
-                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="p-6 bg-gray-800 rounded shadow card-elevate">
-                        <h4 class="font-semibold text-indigo-400">Leadership</h4>
-                        <p class="text-sm text-gray-300 mt-2">
-                            Team guidance, project coordination
-                        </p>
-                    </div>
-                    <div class="p-6 bg-gray-800 rounded shadow card-elevate">
-                        <h4 class="font-semibold text-indigo-400">Full-Stack Dev</h4>
-                        <p class="text-sm text-gray-300 mt-2">React, Angular, C#, Flutter</p>
-                    </div>
-                    <div class="p-6 bg-gray-800 rounded shadow card-elevate">
-                        <h4 class="font-semibold text-indigo-400">DevSecOps</h4>
-                        <p class="text-sm text-gray-300 mt-2">CI/CD, SonarQube, Security testing</p>
-                    </div>
-                    <div class="p-6 bg-gray-800 rounded shadow card-elevate">
-                        <h4 class="font-semibold text-indigo-400">Communications</h4>
-                        <p class="text-sm text-gray-300 mt-2">
-                            Customer relations, documentation
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-16">
-            <div class="max-w-6xl mx-auto px-4"
-                 data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-center text-indigo-400">
-                    Selected Projects
-                </h2>
-                <div class="mt-8 grid md:grid-cols-2 gap-6">
-                    <article class="p-6 bg-gray-800 rounded shadow card-elevate"
-                             data-aos="fade-right">
-                        <h3 class="font-semibold text-xl text-indigo-300">
-                            Municipal Services Application (C#)
-                        </h3>
-                        <p class="text-sm text-gray-400 mt-2">
-                            A portal for citizens to report issues, get announcements, and track
-                            service requests. Implemented efficient data structures to optimise
-                            performance.
-                        </p>
-                    </article>
-                    <article class="p-6 bg-gray-800 rounded shadow card-elevate"
-                             data-aos="fade-left">
-                        <h3 class="font-semibold text-xl text-indigo-300">
-                            International Payments Portal (React / Angular)
-                        </h3>
-                        <p class="text-sm text-gray-400 mt-2">
-                            Secure payment flows with hashing, salting, SSL, and DevSecOps pipeline
-                            integrations (SonarQube, CircleCI).
-                        </p>
-                    </article>
-                    <article class="p-6 bg-gray-800 rounded shadow card-elevate"
-                             data-aos="fade-right">
-                        <h3 class="font-semibold text-xl text-indigo-300">
-                            Mobile Application (Flutter / React Native)
-                        </h3>
-                        <p class="text-sm text-gray-400 mt-2">
-                            Cross-platform app with SSO, biometric auth, offline sync, and real-time
-                            notifications. Custom REST API backend and multi-language support.
-                        </p>
-                    </article>
-                    <article class="p-6 bg-gray-800 rounded shadow card-elevate"
-                             data-aos="fade-left">
-                        <h3 class="font-semibold text-xl text-indigo-300">
-                            Agri-Energy Connect Prototype
-                        </h3>
-                        <p class="text-sm text-gray-400 mt-2">
-                            Prototype connecting agriculture stakeholders with renewable energy
-                            providers to enable greener operations.
-                        </p>
-                    </article>
-                    <!-- NEW PROJECT: STRIDE -->
-                    <article class="p-6 bg-gray-800 rounded shadow card-elevate"
-                             data-aos="fade-right">
-                        <h3 class="font-semibold text-xl text-indigo-300">
-                            Stride: Turn Steps Into Rewards
-                        </h3>
-                        <p class="text-sm text-gray-400 mt-2">
-                            Contributed to front-end and back-end of a walk-to-earn mobile app. Designed interactive UIs with real-time notifications, seasonal challenges, and progress dashboards.
-                            On the back end, implemented secure user data handling, points tracking, and real-time API integrations. Worked closely with seniors to build a fun, reliable platform.
-                        </p>
-                    </article>
-                    <!-- NEW PROJECT: NPO -->
-                    <article class="p-6 bg-gray-800 rounded shadow card-elevate"
-                             data-aos="fade-left">
-                        <h3 class="font-semibold text-xl text-indigo-300">
-                            NPS Champions: NPO Web & App Platform
-                        </h3>
-                        <p class="text-sm text-gray-400 mt-2">
-                            Led UI design for web and mobile app supporting a non-profit school. Designed accessible, user-friendly interfaces informed by user research.
-                            Delivered a cohesive design system and streamlined the user experience through collaboration, feedback, and iterative refinement.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="py-16 bg-gray-800/60">
-            <div class="max-w-5xl mx-auto px-4" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-center text-indigo-400">
-                    Experience
-                </h2>
-                <div class="mt-8 space-y-6 text-center">
-                    <div class="p-6 bg-gray-800 rounded shadow card-elevate">
-                        <h4 class="font-semibold text-indigo-300">
-                            Al-Burhaan NGO, IT Systems Administrator, Full-Stack Developer
-                        </h4>
-                        <div class="text-sm text-gray-400 mt-1">Apr 2025 - Jul 2025</div>
-                        <p class="mt-2 text-sm text-gray-400">
-                            Managed VMs, deployed Keycloak SSO, Koha and Gibbon; configured NGINX,
-                            improved uptime and security.
-                        </p>
-                    </div>
-                    <div class="p-6 bg-gray-800 rounded shadow card-elevate">
-                        <h4 class="font-semibold text-indigo-300">Stride, Junior Developer</h4>
-                        <div class="text-sm text-gray-400 mt-1">Feb 2024 - Jan 2025</div>
-                        <p class="mt-2 text-sm text-gray-400">
-                            Worked on a walk-to-earn mobile app, front-end features, backend
-                            integrations, secure data handling.
-                        </p>
-                    </div>
-                    <div class="p-6 bg-gray-800 rounded shadow card-elevate">
-                        <h4 class="font-semibold text-indigo-300">
-                            Habibi Biltong, IT & Management
-                        </h4>
-                        <div class="text-sm text-gray-400 mt-1">Aug 2021 – Oct 2023</div>
-                        <p class="mt-2 text-sm text-gray-400">
-                            Enhanced brand visibility through social media and ensured high customer satisfaction with quality control standards.
-                            Ran IT functions, ensuring efficient technical operations.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-16">
-            <div class="max-w-3xl mx-auto px-4"
-                 data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-center text-indigo-400">
-                    Contact
-                </h2>
-                <div class="mt-6 bg-gray-800 rounded shadow p-6 text-center">
-                    <p>
-                        Email:
-                        <a href="mailto:ebmoemedia@gmail.com" class="text-indigo-400 hover:underline">ebmoemedia@gmail.com</a>
+                    <p class="text-lg text-gray-400 mb-8">
+                        Durban, South Africa
                     </p>
-                    <p class="mt-2">
-                        Phone:
-                        <a href="tel:+27614895476" class="text-indigo-400 hover:underline">+27 61 489 5476</a>
+                    <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+                        Passionate about combining technical expertise with strategic thinking to create secure, user-centered applications and efficient IT solutions.
                     </p>
-                    <form class="mt-6 grid gap-3"
-                          onsubmit="event.preventDefault(); alert('Thanks you for reaching out!');">
-                        <input class="w-full border border-gray-600 rounded bg-gray-900 px-3 py-2 text-gray-300"
-                               placeholder="Your name"
-                               required />
-                        <input class="w-full border border-gray-600 rounded bg-gray-900 px-3 py-2 text-gray-300"
-                               placeholder="Your email"
-                               type="email"
-                               required />
-                        <textarea class="w-full border border-gray-600 rounded bg-gray-900 px-3 py-2 text-gray-300"
-                                  placeholder="Message"
-                                  rows="4"
-                                  required></textarea>
-                        <div class="flex justify-center">
-                            <button class="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:bg-indigo-700 transition">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                    <div class="mt-4">
+                    <div class="flex flex-wrap justify-center gap-4 mb-8">
+                        <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })"
+                                class="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-white/20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+                            About Me
+                        </button>
+                        <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
+                                class="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-white/20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+                            View Projects
+                        </button>
+                        <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
+                                class="bg-white/10 border border-white/20 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-white/20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+                            Contact Me
+                        </button>
+                    </div>
+                    <div class="flex justify-center gap-6 mb-8">
+                        <a href="https://drive.google.com/uc?export=download&id=1wLTA3QQ-Llbhc0ksKx49DkyjJdz3jgb4"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-transform duration-300 hover:scale-110"
+                           aria-label="Download CV">
+                            <i data-lucide="download" class="w-6 h-6"></i>
+                        </a>
                         <a href="https://www.linkedin.com/in/ebrahim-mohammed-1bb06623a"
                            target="_blank"
-                           class="text-indigo-400 hover:underline">LinkedIn Profile</a>
+                           rel="noopener noreferrer"
+                           class="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-transform duration-300 hover:scale-110"
+                           aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="w-6 h-6"></i>
+                        </a>
                     </div>
                 </div>
+            </section>
+
+
+            <!-- About Me Section -->
+            <section id="about" class="py-16">
+                <div class="max-w-6xl mx-auto px-4" data-aos="fade-up">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-indigo-400 mb-4">
+                            About Me
+                        </h2>
+                        <p class="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                            I'm a Computer Science graduate with a strong background in application development, business, marketing, and management. I combine technical expertise with strategic thinking to create secure, user-centered applications and reliable infrastructure. Passionate about leveraging IT solutions to streamline processes, I strive to deliver innovative and efficient solutions with a collaborative, human-centered approach.
+                        </p>
+                    </div>
+
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-semibold text-indigo-400 mb-8 text-center">
+                            Core Competencies
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-gradient-card shadow-card hover:shadow-elevate transition-transform duration-300 hover:scale-105 rounded-lg">
+                                <div class="p-6 text-center">
+                                    <div class="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-indigo-400 mb-2">Leadership & Team Support</h4>
+                                    <p class="text-gray-400 text-sm">Skilled in guiding teams to achieve project goals through collaboration and effective coordination.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gradient-card shadow-card hover:shadow-elevate transition-transform duration-300 hover:scale-105 rounded-lg">
+                                <div class="p-6 text-center">
+                                    <div class="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="code" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-indigo-400 mb-2">App & Web Development</h4>
+                                    <p class="text-gray-400 text-sm">Expertise in building full-stack applications with modern frameworks and secure practices.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gradient-card shadow-card hover:shadow-elevate transition-transform duration-300 hover:scale-105 rounded-lg">
+                                <div class="p-6 text-center">
+                                    <div class="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="message-square" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-indigo-400 mb-2">Communication</h4>
+                                    <p class="text-gray-400 text-sm">Effective communicator, fostering strong customer relations and clear documentation.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gradient-card shadow-card hover:shadow-elevate transition-transform duration-300 hover:scale-105 rounded-lg">
+                                <div class="p-6 text-center">
+                                    <div class="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="clock" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-indigo-400 mb-2">Time Management</h4>
+                                    <p class="text-gray-400 text-sm">Proficient in managing deadlines and delivering projects efficiently in dynamic environments.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gradient-card shadow-card hover:shadow-elevate transition-transform duration-300 hover:scale-105 rounded-lg">
+                                <div class="p-6 text-center">
+                                    <div class="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-indigo-400 mb-2">Security & DevSecOps</h4>
+                                    <p class="text-gray-400 text-sm">Strong focus on cybersecurity, integrating secure coding and DevSecOps pipelines.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gradient-card shadow-card hover:shadow-elevate transition-transform duration-300 hover:scale-105 rounded-lg">
+                                <div class="p-6 text-center">
+                                    <div class="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="database" class="w-6 h-6 text-white"></i>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-indigo-400 mb-2">System Administration</h4>
+                                    <p class="text-gray-400 text-sm">Experienced in managing IT systems, infrastructure, and backend services.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-semibold text-indigo-400 mb-8 text-center">
+                            Technologies & Skills
+                        </h3>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">C#</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">React</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Angular</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Flutter</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Dart</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">JavaScript</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Node.js</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">SQL</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">MongoDB</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">PostgreSQL</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Docker</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Linux</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">DevSecOps</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">CI/CD</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Git</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Azure</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">AWS</span>
+                            <span class="px-4 py-2 text-sm font-medium bg-gray-700 text-gray-300 rounded hover:bg-indigo-600 hover:text-white transition cursor-default">Figma</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="py-16">
+                <div class="max-w-6xl mx-auto px-4" data-aos="fade-up">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-indigo-400 mb-4">
+                            Education & Certifications
+                        </h2>
+                        <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                            Academic foundation and continuous learning in computer science, development, and emerging technologies.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-indigo-400 mb-8 flex items-center gap-3">
+                                <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                                Formal Education
+                            </h3>
+                            <div class="space-y-6">
+                                <div class="bg-gradient-card shadow-card hover:shadow-elevant transition-transform duration-300 rounded-lg min-h-[320px]">
+                                    <div class="p-6">
+                                        <div class="flex items-start justify-between">
+                                            <h4 class="text-xl font-semibold text-indigo-400">Bachelor of Computer Science in Application Development</h4>
+                                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">
+                                                <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>2024
+                                            </span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="text-gray-400 font-medium">IIE Varsity College</p>
+                                            <div class="flex gap-2 mt-2">
+                                                <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">NQF Level 7</span>
+                                                <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gradient-primary text-white">
+                                                    <i data-lucide="award" class="w-3 h-3 mr-1"></i>With Distinction
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-4 text-sm text-gray-400">Comprehensive computer science education covering software development, algorithms, database systems, and system design.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-card shadow-card hover:shadow-elevant transition-transform duration-300 rounded-lg min-h-[320px]">
+                                    <div class="p-6">
+                                        <div class="flex items-start justify-between">
+                                            <h4 class="text-xl font-semibold text-indigo-400">Higher Certificate in Information Technology & Support Services</h4>
+                                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">
+                                                <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>2021
+                                            </span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="text-gray-400 font-medium">IIE Varsity College</p>
+                                            <div class="flex gap-2 mt-2">
+                                                <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">NQF Level 5</span>
+                                                <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gradient-primary text-white">
+                                                    <i data-lucide="award" class="w-3 h-3 mr-1"></i>With Distinction
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-4 text-sm text-gray-400">Specialized training in IT support, system administration, and technical service delivery.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-indigo-400 mb-8 flex items-center gap-3">
+                                <i data-lucide="award" class="w-8 h-8"></i>
+                                Professional Certifications
+                            </h3>
+                            <div class="space-y-6">
+                                <div class="bg-gradient-card shadow-card hover:shadow-elevant transition-transform duration-300 rounded-lg min-h-[320px]">
+                                    <div class="p-6">
+                                        <div class="flex items-start justify-between">
+                                            <h4 class="text-xl font-semibold text-indigo-400">The Complete Flutter Development Bootcamp with Dart</h4>
+                                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">
+                                                <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>2025
+                                            </span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="text-gray-400 font-medium">Udemy</p>
+                                            <div class="flex gap-2 mt-2">
+                                                <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gradient-primary text-white">
+                                                    <i data-lucide="clock" class="w-3 h-3 mr-1"></i>29 Hours
+                                                </span>
+                                                <a href="https://www.udemy.com/certificate/UC-0cdc3761-fd00-4165-9148-29143bad539b/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-indigo-400 hover:text-indigo-300 text-sm">
+                                                    View Certificate
+                                                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <p class="mt-4 text-sm text-gray-400">Comprehensive Flutter and Dart development training covering mobile app development from basics to advanced concepts.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-card shadow-card hover:shadow-elevant transition-transform duration-300 rounded-lg min-h-[320px]">
+                                    <div class="p-6">
+                                        <div class="flex items-start justify-between">
+                                            <h4 class="text-xl font-semibold text-indigo-400">The Complete Full-Stack Web Development Bootcamp</h4>
+                                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">
+                                                <i data-lucide="calendar" class="w-3 h-3 mr-1"></i>2025
+                                            </span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="text-gray-400 font-medium">Udemy</p>
+                                            <div class="flex gap-2 mt-2">
+                                                <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gradient-primary text-white">
+                                                    <i data-lucide="clock" class="w-3 h-3 mr-1"></i>61 Hours
+                                                </span>
+                                                <a href="https://www.udemy.com/certificate/UC-87a55319-1d8a-4df0-bc8b-6b6eb80cb0b2/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-indigo-400 hover:text-indigo-300 text-sm">
+                                                    View Certificate
+                                                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <p class="mt-4 text-sm text-gray-400">In-depth training in full-stack web development, covering front-end and back-end technologies, databases, and deployment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-16">
+                <div class="max-w-6xl mx-auto px-4" data-aos="fade-up">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-indigo-400 mb-4">
+                            Featured Projects
+                        </h2>
+                        <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                            A showcase of development projects demonstrating expertise in full-stack development, mobile applications, security, and user experience design.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="globe" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors">Municipal Services Application</h3>
+                                <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                                    A portal for citizens to report issues, get announcements, and track service requests. Implemented efficient data structures to optimise performance.
+                                </p>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Technologies:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">C#</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">.NET</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">SQL Server</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Data Structures</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Key Features:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Advanced Data Structures</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Queue Management</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Real-time Updates</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Citizen Portal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors">International Payments Portal</h3>
+                                <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                                    Secure payment flows with hashing, salting, SSL, and DevSecOps pipeline integrations (SonarQube, CircleCI).
+                                </p>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Technologies:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">React</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Angular</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Node.js</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">DevSecOps</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">SonarQube</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">CircleCI</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Key Features:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Security-First Design</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">DevSecOps Pipeline</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Vulnerability Assessment</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">SSL Implementation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="smartphone" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors">Mobile Application</h3>
+                                <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                                    Cross-platform app with SSO, biometric auth, offline sync, and real-time notifications. Custom REST API backend and multi-language support.
+                                </p>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Technologies:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Flutter</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Dart</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">REST API</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Firebase</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">GitHub Actions</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Key Features:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Biometric Auth</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Offline Sync</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Real-time Notifications</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Multi-language Support</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="globe" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors">Agri-Energy Connect Prototype</h3>
+                                <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                                    Prototype connecting agriculture stakeholders with renewable energy providers to enable greener operations.
+                                </p>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Technologies:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">C#</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">ASP.NET</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">SQL Server</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Web API</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Key Features:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Provider Matching</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Energy Analytics</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Sustainable Solutions</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Sector Integration</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-red-500 to-rose-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors">Stride: Turn Steps Into Rewards</h3>
+                                <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                                    Contributed to front-end and back-end of a walk-to-earn mobile app. Designed interactive UIs with real-time notifications, seasonal challenges, and progress dashboards. Implemented secure user data handling and API integrations.
+                                </p>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Technologies:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">React Native</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Flutter</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">REST API</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Node.js</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Key Features:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Interactive UI</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Real-time Notifications</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Seasonal Challenges</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Secure Data Handling</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-blue-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-indigo-400 group-hover:text-indigo-300 transition-colors">NPS Champions: NPO Web & App Platform</h3>
+                                <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                                    Led UI design for web and mobile app supporting a non-profit school. Designed accessible, user-friendly interfaces informed by user research.
+                                </p>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Technologies:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">UI/UX Design</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Figma</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">React</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300">Mobile First</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="text-sm font-semibold text-indigo-400 mb-2">Key Features:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Accessible Design</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">User Research</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Cross-platform UI</span>
+                                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Engagement Focus</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="py-16">
+                <div class="max-w-6xl mx-auto px-4" data-aos="fade-up">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-indigo-400 mb-4">
+                            Professional Experience
+                        </h2>
+                        <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                            Building innovative solutions across NGO, startup, and business environments with focus on full-stack development, system administration, and user-centric design.
+                        </p>
+                    </div>
+                    <div class="space-y-8">
+                        <!-- Al-Burhaan NGO -->
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 rounded-lg">
+                            <div class="p-6">
+                                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                                    <div class="flex-1">
+                                        <h3 class="text-xl md:text-2xl font-semibold text-indigo-400 mb-2">
+                                            IT Systems Administrator & Full-Stack Developer
+                                        </h3>
+                                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-400">
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="building" class="w-4 h-4"></i>
+                                                <span class="font-medium">Al-Burhaan NGO</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                                <span>Durban</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                                                <span>April 2024 - July 2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 space-y-6">
+                                    <p class="text-gray-400 leading-relaxed">
+                                        Supporting the NGO's digital infrastructure by managing virtual machines on VMware Linux servers and deploying key software solutions.
+                                    </p>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-indigo-400 mb-3">Key Achievements:</h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Managing VMs hosting Keycloak (SSO), RustDesk (remote access), and Koha (library management)</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Configured NGINX for secure internal service publishing</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Implemented Gibbon school management platform</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Created SharePoint-based help desk for internal support</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Developed cross-platform library application using Flutter & Dart</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Ensured security and uptime for hosted services</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-indigo-400 mb-3">Technologies Used:</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">VMware</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Linux</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">NGINX</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Keycloak</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Flutter</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Dart</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">SharePoint</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Stride -->
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 rounded-lg">
+                            <div class="p-6">
+                                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                                    <div class="flex-1">
+                                        <h3 class="text-xl md:text-2xl font-semibold text-indigo-400 mb-2">
+                                            Junior Developer
+                                        </h3>
+                                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-400">
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="building" class="w-4 h-4"></i>
+                                                <span class="font-medium">Stride: Turn Steps Into Rewards</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                                <span>Remote</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                                                <span>February 2024 - January 2025</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 space-y-6">
+                                    <p class="text-gray-400 leading-relaxed">
+                                        Integral role in designing and developing a walk-to-earn mobile application that rewards users for physical activity.
+                                    </p>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-indigo-400 mb-3">Key Achievements:</h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Developed interactive UI with real-time notifications and progress tracking</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Built secure backend systems for user data and points tracking</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Implemented seasonal challenges and leaderboard systems</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Ensured smooth API integration for real-time updates</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Applied secure coding practices for user data protection</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Collaborated with senior developers on advanced features</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-indigo-400 mb-3">Technologies Used:</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Flutter</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Dart</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">React Native</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Node.js</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">API Development</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Mobile UI/UX</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Backend Security</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Habibi Biltong -->
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 rounded-lg">
+                            <div class="p-6">
+                                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                                    <div class="flex-1">
+                                        <h3 class="text-xl md:text-2xl font-semibold text-indigo-400 mb-2">
+                                            Marketing, IT & Management
+                                        </h3>
+                                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-400">
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="building" class="w-4 h-4"></i>
+                                                <span class="font-medium">Habibi Biltong</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                                <span>Durban</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                                                <span>August 2021 - October 2023</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 space-y-6">
+                                    <p class="text-gray-400 leading-relaxed">
+                                        Enhanced brand visibility through social media and ensured high customer satisfaction with quality control standards.
+                                    </p>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-indigo-400 mb-3">Key Achievements:</h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Enhanced brand visibility through strategic social media marketing</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Maintained high customer satisfaction with quality control</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Managed IT operations ensuring efficient technical systems</span>
+                                            </li>
+                                            <li class="flex items-start gap-3">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                <span class="text-gray-400">Integrated digital solutions for business operations</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-indigo-400 mb-3">Technologies Used:</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Social Media Marketing</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">IT Management</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Sharepoint</span>
+                                            <span class="inline-flex px-2 py-1 rounded text-xs font-medium border border-gray-600 text-gray-300 hover:bg-indigo-600 hover:text-white transition">Business Operations</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-16">
+                <div class="max-w-6xl mx-auto px-4" data-aos="fade-up">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-indigo-400 mb-4">
+                            Let's Connect
+                        </h2>
+                        <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                            I'm always interested in discussing new opportunities, collaborating on innovative projects, or simply connecting with fellow developers and tech enthusiasts. Feel free to reach out!
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg">
+                            <div class="p-6 text-center">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-indigo-400 mb-2">Email</h3>
+                                <a href="mailto:ebmoemedia@gmail.com" class="text-gray-400 hover:text-indigo-400 transition-colors break-all">ebmoemedia@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg">
+                            <div class="p-6 text-center">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="phone" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-indigo-400 mb-2">Phone</h3>
+                                <a href="tel:+27614895476" class="text-gray-400 hover:text-indigo-400 transition-colors break-all">(+27) 614895476</a>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-card shadow-card hover:shadow-elegant transition-transform duration-300 hover:scale-105 rounded-lg">
+                            <div class="p-6 text-center">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="linkedin" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-indigo-400 mb-2">LinkedIn</h3>
+                                <a href="https://www.linkedin.com/in/ebrahim-mohammed-1bb06623a" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition-colors break-all">ebrahim-mohammed-1bb06623a</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-6 text-center text-sm text-gray-500">
+            <div class="max-w-6xl mx-auto px-4">
+                &copy; 2025 Ebrahim Mohammed · Built with TailwindCSS
             </div>
-        </section>
-    </main>
+        </footer>
 
-    <!-- Footer -->
-    <footer class="py-6 text-center text-sm text-gray-500">
-        <div class="max-w-6xl mx-auto px-4">
-            &copy; 2025 Ebrahim Mohammed · Built with TailwindCSS
-        </div>
-    </footer>
+        <script>
+            AOS.init({ duration: 800, once: true });
+            const mobileBtn = document.getElementById("mobileBtn");
+            const mobileNav = document.getElementById("mobileNav");
+            mobileBtn.addEventListener("click", () => mobileNav.classList.toggle("hidden"));
 
-    <script>
-        AOS.init({ duration: 800, once: true });
-        const mobileBtn = document.getElementById("mobileBtn");
-        const mobileNav = document.getElementById("mobileNav");
-        mobileBtn.addEventListener("click", () => mobileNav.classList.toggle("hidden"));
+            /* Starry Background Script */
+            (function () {
+                const canvas = document.getElementById('starCanvas');
+                if (!canvas) {
+                    console.error('Canvas element with ID "starCanvas" not found.');
+                    return;
+                }
+                const ctx = canvas.getContext('2d');
+                if (!ctx) {
+                    console.error('Failed to get 2D context for canvas.');
+                    return;
+                }
 
-        /* Starry background script (only addition) */
-        (function () {
-            const canvas = document.getElementById('starCanvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            let stars = [];
-            let w = 0, h = 0;
-            let tick = 0;
+                let stars = [];
+                const numStars = 200;
+                let animationFrameId;
 
-            function resize() {
-                const dpr = window.devicePixelRatio || 1;
-                canvas.width = Math.floor(window.innerWidth * dpr);
-                canvas.height = Math.floor(window.innerHeight * dpr);
-                canvas.style.width = window.innerWidth + 'px';
-                canvas.style.height = window.innerHeight + 'px';
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-                w = window.innerWidth;
-                h = window.innerHeight;
-                initStars();
-            }
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    canvas.style.width = window.innerWidth + 'px';
+                    canvas.style.height = window.innerHeight + 'px';
+                    initStars();
+                }
 
-            function initStars() {
-                stars = [];
-                // Count scales with screen area (keeps performance reasonable)
-                const area = Math.max(80000, w * h);
-                const count = Math.min(300, Math.floor(area / 20000)); // ~150 on medium screens
-                for (let i = 0; i < count; i++) {
-                    stars.push({
-                        x: Math.random() * w,
-                        y: Math.random() * h,
-                        depth: Math.random() * 1.8 + 0.2, // 0.2 .. 2.0
-                        size: Math.random() * 1.5 + 0.2,
-                        phase: Math.random() * Math.PI * 2,
-                        speed: Math.random() * 0.02 + 0.005,
-                        // New velocities for autonomous movement
-                        vx: (Math.random() - 0.5) * 0.1,
-                        vy: (Math.random() - 0.5) * 0.1,
+                function initStars() {
+                    stars = [];
+                    for (let i = 0; i < numStars; i++) {
+                        stars.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            z: Math.random() * 1000,
+                            speed: 0.2 + Math.random() * 0.8
+                        });
+                    }
+                }
+
+                function updateStars() {
+                    stars.forEach(star => {
+                        star.z -= star.speed;
+                        if (star.z <= 0) {
+                            star.x = Math.random() * canvas.width;
+                            star.y = Math.random() * canvas.height;
+                            star.z = 1000;
+                        }
                     });
                 }
-            }
 
-            function draw() {
-                tick += 0.01;
-                ctx.clearRect(0, 0, w, h);
-                const cx = w / 2;
-                const cy = h / 2;
+                function drawStars() {
+                    ctx.fillStyle = 'rgba(15, 23, 42, 0.1)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                for (let i = 0; i < stars.length; i++) {
-                    const s = stars[i];
+                    stars.forEach(star => {
+                        const x = (star.x - canvas.width / 2) * (1000 / star.z) + canvas.width / 2;
+                        const y = (star.y - canvas.height / 2) * (1000 / star.z) + canvas.height / 2;
+                        const size = (1 - star.z / 1000) * 2;
+                        const opacity = 1 - star.z / 1000;
 
-                    // Autonomous movement of stars: update positions
-                    s.x += s.vx * (2 / s.depth);
-                    s.y += s.vy * (2 / s.depth);
+                        ctx.beginPath();
+                        ctx.arc(x, y, size, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                        ctx.fill();
 
-                    // Wrap stars around edges
-                    if (s.x < 0) s.x = w;
-                    else if (s.x > w) s.x = 0;
-                    if (s.y < 0) s.y = h;
-                    else if (s.y > h) s.y = 0;
-
-                    // Twinkle effect
-                    const tw = 0.6 + 0.4 * Math.sin(s.phase + tick * (s.speed * 30));
-                    const alpha = Math.max(0.25, Math.min(1, tw));
-
-                    ctx.beginPath();
-                    ctx.globalAlpha = alpha;
-                    // Slightly larger for nearer stars
-                    const radius = s.size * (1 + (2 - s.depth) * 0.6);
-                    ctx.arc(s.x, s.y, radius, 0, Math.PI * 2);
-                    ctx.fillStyle = 'white';
-                    ctx.fill();
-                    ctx.globalAlpha = 1;
+                        if (Math.random() > 0.99) {
+                            ctx.beginPath();
+                            ctx.arc(x, y, size * 2, 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(147, 197, 253, ${opacity * 0.5})`;
+                            ctx.fill();
+                        }
+                    });
                 }
 
-                requestAnimationFrame(draw);
-            }
+                function animate() {
+                    updateStars();
+                    drawStars();
+                    animationFrameId = requestAnimationFrame(animate);
+                }
 
-            window.addEventListener('resize', resize);
-            // Initialize
-            resize();
-            requestAnimationFrame(draw);
-        })();
-    </script>
+                function handleMouseMove(e) {
+                    const mouseX = e.clientX / window.innerWidth - 0.5;
+                    const mouseY = e.clientY / window.innerHeight - 0.5;
+
+                    stars.forEach(star => {
+                        star.x += mouseX * 0.5;
+                        star.y += mouseY * 0.5;
+                    });
+                }
+
+                // Check for reduced motion preference
+                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    resizeCanvas();
+                    initStars();
+                    animate();
+                    window.addEventListener('resize', resizeCanvas);
+                    window.addEventListener('mousemove', handleMouseMove);
+                } else {
+                    console.log('Reduced motion detected; starry background disabled.');
+                }
+
+                // Initialize Lucide icons
+                lucide.createIcons();
+            })();
+        </script>
 </body>
 </html>
